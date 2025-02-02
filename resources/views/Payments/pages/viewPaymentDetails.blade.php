@@ -4,6 +4,10 @@
     $client = $payment->client;
 @endphp
 
+<div class="d-flex justify-content-start align-items-center">    
+        <div class="p-1"><h1>Payment Details</h1></div>
+</div>
+
 <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
