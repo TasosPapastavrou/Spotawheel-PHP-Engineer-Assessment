@@ -14,6 +14,10 @@ if(old('client') || $errors->has('client'))
 
 @endphp
 
+<div class="d-flex justify-content-center align-items-center">    
+        <div class="p-1"><h1>Update Payment</h1></div>
+</div>
+
 <form action="{{route('update.payment.data', 1)}}" method="post">
 @csrf 
 

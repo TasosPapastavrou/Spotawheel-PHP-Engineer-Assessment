@@ -14,6 +14,10 @@
         @endif
     </div>
 
+    <div class="d-flex justify-content-center align-items-center">    
+        <div class="p-1"><h1>Clients List</h1></div>
+    </div>
+
     <div class="d-flex justify-content-start align-items-center">    
         <div class="p-1"><h1>Filters</h1></div>
     </div>

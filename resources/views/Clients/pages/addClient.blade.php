@@ -1,5 +1,8 @@
 <section>
 
+<div class="d-flex justify-content-center align-items-center">    
+        <div class="p-1"><h1>Add Client</h1></div>
+</div>
 
 <form action="{{route('store.new.client')}}" method="post">
 @csrf 

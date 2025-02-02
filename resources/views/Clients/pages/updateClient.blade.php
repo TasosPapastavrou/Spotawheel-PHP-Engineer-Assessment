@@ -15,6 +15,9 @@ if(old('surname') || $errors->has('surname'))
 
 @endphp
 
+<div class="d-flex justify-content-center align-items-center">    
+        <div class="p-1"><h1>Update Client</h1></div>
+</div>
 
 <form action="{{route('update.client.data',$client->id)}}" method="post">
 @csrf 
