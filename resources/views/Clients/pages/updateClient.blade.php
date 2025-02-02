@@ -2,10 +2,10 @@
 
 @php
 
-if(!Session::has('success')){
+
     $name = $client->name;
     $surname = $client->surname; 
-}
+
 
 if(old('name') || $errors->has('name'))
     $name = old('name');   
