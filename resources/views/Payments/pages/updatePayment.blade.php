@@ -18,7 +18,7 @@ if(old('client') || $errors->has('client'))
         <div class="p-1"><h1>Update Payment</h1></div>
 </div>
 
-<form action="{{route('update.payment.data', 1)}}" method="post">
+<form action="{{route('update.payment.data', $payment->id)}}" method="post">
 @csrf 
 
 
