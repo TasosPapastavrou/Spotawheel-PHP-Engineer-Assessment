@@ -52,6 +52,7 @@
             <tr>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Last Payment</th>
                 <th>Actions</th>
                 <th>created at</th> 
             </tr>

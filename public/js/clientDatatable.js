@@ -10,6 +10,7 @@ var clientTable = $('#clients-table').DataTable({
     columns: [ 
         { data: "name" },
         { data: "surname" },
+        { data: "lastPayment" },
         { 
             data: "id",
             render: function(data,type,row){

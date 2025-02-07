@@ -24,6 +24,11 @@ class Client extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function lastPayment()
+    {
+        return $this->hasOne(Payment::class)->latest();
+    }
+
     public function scopeFilterClients(Builder $query, $search, $startDate, $endDate)
     {
         $query->when($search ?? null, function ($query) use ($search) {

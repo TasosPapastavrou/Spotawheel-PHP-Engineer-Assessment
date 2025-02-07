@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client; 
+use Carbon\Carbon;
 
 class ClientController extends Controller
 {
@@ -61,12 +62,35 @@ class ClientController extends Controller
             $columnKey = 'created_at';
         }
 
- 
-        $clients = Client::filterClients($search,$startDate,$endDate)->orderBy($columnKey, $dir);
+        $clients = Client::filterClients($search,$startDate,$endDate)->with('lastPayment')->orderBy($columnKey, $dir);
         $recordsTotal = $clients->count();
         $recordsFiltered = $recordsTotal;
-        $clients = $clients->skip($start)->take($rowPerPage);        
-        $clients = $clients->get();
+        $clients = $clients->skip($start)->take($rowPerPage);
+
+        $clients = $clients->get()->map(function($client) use ($startDate, $endDate) {
+            
+
+            $lastPayment = $client->lastPayment()
+            ->when($startDate ?? null, function ($query) use ($startDate) {
+                $startDate = Carbon::parse($startDate)->startOfDay();
+                $query->where('created_at', '>=', $startDate);
+            })
+            ->when($endDate ?? null, function ($query) use ($endDate) {
+                $endDate = Carbon::parse($endDate)->endOfDay();
+                $query->where('created_at', '<=', $endDate);
+            })
+            ->latest()
+            ->first();
+
+            return [
+                'id' => $client->id,  
+                'name' => $client->name,
+                'surname' => $client->surname,
+                'lastPayment' => $lastPayment ? $lastPayment->amount : 'no payment',
+                'created_at' => $client->created_at,  
+                ];           
+        })->toArray();
+
         
         $response = array(                
             "draw"=> intval($draw),
